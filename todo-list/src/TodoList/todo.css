@@ -1,0 +1,5 @@
+.Completed {
+  color: gray;
+  background-color: lightgreen;
+  text-decoration: line-through;
+}
