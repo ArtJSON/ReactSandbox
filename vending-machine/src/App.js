@@ -1,23 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { NavLink, Routes, Route } from "react-router-dom";
+
+import Doritos from "./Components/Snakcs/Doritos";
+import Pepsi from "./Components/Snakcs/Pepsi";
+import Snickers from "./Components/Snakcs/Snickers";
+import VendingMachine from "./Components/VendingMachine";
+import { useState } from "react";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <nav className="navbar">
+        <NavLink exact to="/" className="nav-link" activeClassName="selected">
+          Home
+        </NavLink>
+        <NavLink
+          exact
+          to="/doritos"
+          className="nav-link"
+          activeClassName="selected"
         >
-          Learn React
-        </a>
-      </header>
+          Doritos
+        </NavLink>
+        <NavLink
+          exact
+          to="/pepsi"
+          className="nav-link"
+          activeClassName="selected"
+        >
+          Pepsi
+        </NavLink>
+        <NavLink
+          exact
+          to="/snickers"
+          className="nav-link"
+          activeClassName="selected"
+        >
+          Snickers
+        </NavLink>
+      </nav>
+      <Routes>
+        <Route exact path="/" element={<VendingMachine />} />
+        <Route exact path="/doritos" element={<Doritos />} />
+        <Route exact path="/pepsi" element={<Pepsi />} />
+        <Route exact path="/snickers" element={<Snickers />} />
+      </Routes>
     </div>
   );
 }
