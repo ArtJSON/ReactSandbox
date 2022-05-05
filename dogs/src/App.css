@@ -1,3 +1,135 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+  v2.0 | 20110126
+  License: none (public domain)
+*/
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol,
+ul {
+  list-style: none; }
+
+blockquote,
+q {
+  quotes: none; }
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+body {
+  font-family: sans-serif;
+  background: #bbcd00;
+  background: linear-gradient(90deg, #bbcd00 0%, #28ff89 100%); }
+
 @media only screen and (max-width: 719px) {
   .navbar {
     position: fixed;
@@ -11,7 +143,7 @@
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
-      background-color: #2868d6;
+      background-color: #00651e;
       z-index: 1; }
       .navbar .navbar-main * {
         margin: 0.5rem; }
@@ -24,11 +156,11 @@
         padding: 0.5rem;
         width: 1rem;
         height: 1rem;
-        background-color: #2053ab;
+        background-color: #00320f;
         border-radius: 2rem;
         transition: background-color 0.2s; }
         .navbar .navbar-main i:hover {
-          background-color: #1c4996; }
+          background-color: #001907; }
     .navbar .navbar-options {
       display: flex;
       flex-direction: column;
@@ -37,14 +169,14 @@
       list-style-type: none;
       transition: transform 0.2s ease-in-out;
       transform: translateY(-100%);
-      background-color: #1c4996; }
+      background-color: #001907; }
       .navbar .navbar-options-expand {
         transform: translateY(0%); }
       .navbar .navbar-options li {
         padding: 0.3rem 0;
         width: 80%; }
         .navbar .navbar-options li:not(:last-child) {
-          border-bottom: 1px solid #102955; }
+          border-bottom: 1px solid black; }
         .navbar .navbar-options li a {
           display: block;
           color: white;
@@ -53,27 +185,22 @@
 @media only screen and (min-width: 720px) {
   .navbar {
     position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translate(-50%, 0);
-    margin-bottom: 1rem;
     font-family: "Sora", sans-serif;
-    background-color: #2868d6;
+    background-color: #00651e;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem;
-    border-radius: 2rem;
-    color: white;
-    width: 400px;
-    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.8); }
+    padding: 0.5rem;
+    width: 100%;
+    height: 3rem;
+    box-sizing: border-box;
+    color: white; }
     .navbar i {
       display: none; }
     .navbar .navbar-title {
-      font-size: 1.5rem; }
+      font-size: 1.25rem; }
     .navbar ul {
       display: flex;
-      justify-content: center;
       flex-wrap: wrap;
       list-style-type: none; }
       .navbar ul li:not(:last-child) {
@@ -81,3 +208,25 @@
       .navbar ul li a {
         color: white;
         text-decoration: none; } }
+
+.page-container {
+  padding-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh; }
+
+.dog-page {
+  background-color: rgba(28, 28, 28, 0.7);
+  padding: 2rem 2rem 0.25rem;
+  border-radius: 1rem;
+  color: white; }
+  .dog-page h1 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 2rem; }
+  .dog-page img {
+    width: 600px; }
+  .dog-page li {
+    margin: 0.25rem 0; }

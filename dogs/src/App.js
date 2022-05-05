@@ -2,6 +2,8 @@ import logo from "./logo.svg";
 import "./App.css";
 import Navbar from "./Navbar";
 import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import DogPage from "./DogPage";
 
 App.defaultProps = {
   dogs: [
@@ -50,20 +52,16 @@ function App(props) {
         handleClick={() => setExpanded(!expanded)}
         expanded={expanded}
       />
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <div className="page-container">
+        <Routes>
+          <Route path="/">
+            {props.dogs.map((d) => (
+              <Route path={d.src} element={<DogPage dog={d} />} />
+            ))}
+          </Route>
+        </Routes>
+      </div>
     </div>
   );
 }

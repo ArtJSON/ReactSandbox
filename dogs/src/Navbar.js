@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 
 class Navbar extends Component {
   render() {
-    console.log(this.props.links);
-
     return (
       <nav className="navbar">
         <div className="navbar-main">
@@ -22,7 +20,9 @@ class Navbar extends Component {
           {this.props.links.map((l, index) => {
             return (
               <li key={index}>
-                <Link to={l.url}>{l.title}</Link>
+                <Link to={l.url} onClick={this.props.handleClick}>
+                  {l.title}
+                </Link>
               </li>
             );
           })}
