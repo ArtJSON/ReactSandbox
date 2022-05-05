@@ -1,3 +1,12 @@
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 nav.navbar {
   display: flex;
   justify-content: space-around;
@@ -66,7 +75,7 @@ li a:hover {
 }
 
 .doritos-container img {
-  position: absolute;
+  position: fixed;
   max-width: 300px;
 
   transform: translate(-50%, -50%);
@@ -74,15 +83,29 @@ li a:hover {
   z-index: -1;
 }
 
-.doritos-container button {
+.btn {
   padding: 1rem;
   border-radius: 1rem;
   margin: 3rem;
   font-size: 3rem;
+  text-decoration: no;
 
   transition: background-color 0.1s;
+  background-color: lightblue;
 }
 
-.doritos-container button:hover {
+.btn:hover {
   background-color: rgb(230, 173, 173);
+}
+
+.pepsi-container {
+  height: 90vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.pepsi {
+  max-width: 300px;
+  animation: rotating 3s linear infinite;
 }

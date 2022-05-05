@@ -23,7 +23,9 @@ class Doritos extends Component {
     return (
       <div className="doritos-container">
         <div className="btn-container">
-          <button onClick={this.incrementDoritos}>Get more!</button>
+          <button className="btn" onClick={this.incrementDoritos}>
+            Get more! <span>{this.state.doritos.length}</span>
+          </button>
         </div>
         <div className="btn-container">
           {this.state.doritos.map((d, it) => (
