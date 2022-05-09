@@ -8,3 +8,12 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
 }
+
+.palette-footer {
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 1rem;
+  font-size: 1.25rem;
+}
