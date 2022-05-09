@@ -10,7 +10,7 @@ export default function Navbar(props) {
     <header className="navbar">
       <div className="logo-slider-container">
         <div className="logo">
-          <a href="#">ReactColorPicker</a>
+          <a href="/">ReactColorPicker</a>
         </div>
         <div className="slider-container">
           <span>Level: {props.level}</span>
