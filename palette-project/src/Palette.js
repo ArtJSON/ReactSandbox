@@ -2,13 +2,17 @@ import React from "react";
 import ColorBox from "./ColorBox";
 import "./styles/Palette.css";
 import Navbar from "./Navbar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Palette(props) {
   const [level, setLevel] = useState(500);
+  const [colorFormat, setColorFormat] = useState("");
+  useEffect(() => {
+    setColorFormat("hex");
+  }, []);
 
   const colorBoxes = props.palette.colors[level].map((c) => (
-    <ColorBox background={c.hex} name={c.name} />
+    <ColorBox background={c[colorFormat]} name={c.name} />
   ));
 
   return (
@@ -17,6 +21,9 @@ export default function Palette(props) {
         level={level}
         handleLevel={(newLevel) => {
           setLevel(newLevel);
+        }}
+        handleFormat={(newFormat) => {
+          setColorFormat(newFormat);
         }}
       />
       <div className="palette-colors">{colorBoxes}</div>

@@ -3,7 +3,15 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
   height: 3rem;
+}
+
+.logo-slider-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
 }
 
 .logo {
@@ -29,4 +37,8 @@
   width: 350px;
   margin-left: 1rem;
   display: inline-block;
+}
+
+.select-container {
+  margin-right: 1rem;
 }
