@@ -1,22 +1,28 @@
 import React from "react";
 import "./styles/ColorPage.css";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import seedColors from "./seedColors";
 import Navbar from "./Navbar";
+import { generatePalette } from "./colorHelpers";
 
 const ColorPage = (props) => {
   let { paletteid, colorid } = useParams();
 
-  const findColor = (id) => {
-    return seedColors.find((palette) => palette.id === id);
+  const findPalette = (paletteid) => {
+    return seedColors.find((palette) => palette.id === paletteid);
   };
 
-  console.log(findColor(paletteid));
+  const wholePalette = generatePalette(findPalette(paletteid)).colors;
+  const colorPalette = [];
+
+  for (let key in wholePalette) {
+    colorPalette.push(wholePalette[key].filter((c) => c.id === colorid)[0]);
+  }
 
   return (
     <div className="color-page">
       <Navbar />
-      {colorid}
+
       <footer className="palette-footer"></footer>
     </div>
   );
