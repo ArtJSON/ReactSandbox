@@ -3,6 +3,7 @@ import "./styles/ColorBox.css";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import chroma from "chroma-js";
 
 export default function ColorBox(props) {
   const [copied, setCopied] = useState(false);
@@ -14,11 +15,19 @@ export default function ColorBox(props) {
     }, 1500);
   };
 
-  console.log(props.background);
+  const luminance = chroma(props.background).luminance();
+  const _threshold = 0.4;
+
+  const colorClass = luminance > _threshold ? "light" : "dark";
+
+  console.log(colorClass);
 
   return (
     <CopyToClipboard text={props.background} onCopy={changeCopyState}>
-      <div className="color-box" style={{ background: props.background }}>
+      <div
+        className={`color-box ${colorClass}`}
+        style={{ background: props.background }}
+      >
         <div
           className={`copy-overlay ${copied ? "show" : ""}`}
           style={{ background: props.background }}
