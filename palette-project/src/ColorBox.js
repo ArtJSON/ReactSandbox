@@ -14,6 +14,8 @@ export default function ColorBox(props) {
     }, 1500);
   };
 
+  console.log(props.background);
+
   return (
     <CopyToClipboard text={props.background} onCopy={changeCopyState}>
       <div className="color-box" style={{ background: props.background }}>

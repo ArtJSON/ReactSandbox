@@ -1,6 +1,15 @@
 .color-page {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow: hidden;
+}
+
+.color-boxes {
+  height: 100%;
+  flex: 1;
+
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
 }
