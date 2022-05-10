@@ -12,22 +12,24 @@ export default function Navbar(props) {
         <div className="logo">
           <a href="/">ReactColorPicker</a>
         </div>
-        <div className="slider-container">
-          <span>Level: {props.level}</span>
-          <Slider
-            className="slider"
-            defaultValue={props.level}
-            min={100}
-            max={900}
-            step={100}
-            trackStyle={{ backgroundColor: "#36c7c9", height: 8 }}
-            handleStyle={{ borderColor: "#36c7c9", height: 16, width: 16 }}
-            railStyle={{ backgroundColor: "#cfcfcf", height: 8 }}
-            onAfterChange={(newLevel) => {
-              props.handleLevel(newLevel);
-            }}
-          />
-        </div>
+        {props.levelSlider && (
+          <div className="slider-container">
+            <span>Level: {props.level}</span>
+            <Slider
+              className="slider"
+              defaultValue={props.level}
+              min={100}
+              max={900}
+              step={100}
+              trackStyle={{ backgroundColor: "#36c7c9", height: 8 }}
+              handleStyle={{ borderColor: "#36c7c9", height: 16, width: 16 }}
+              railStyle={{ backgroundColor: "#cfcfcf", height: 8 }}
+              onAfterChange={(newLevel) => {
+                props.handleLevel(newLevel);
+              }}
+            />
+          </div>
+        )}
       </div>
       <div className="select-container">
         <Select

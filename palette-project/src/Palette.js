@@ -19,12 +19,13 @@ export default function Palette(props) {
   const palette = generatePalette(findPalette(id));
 
   const colorBoxes = palette.colors[level].map((c) => (
-    <ColorBox background={c[colorFormat]} name={c.name} key={c.id} />
+    <ColorBox background={c[colorFormat]} {...c} key={c.id} paletteid={id} />
   ));
 
   return (
     <div className="palette">
       <Navbar
+        levelSlider
         level={level}
         handleLevel={(newLevel) => {
           setLevel(newLevel);

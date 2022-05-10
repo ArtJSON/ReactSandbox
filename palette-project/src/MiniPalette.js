@@ -8,6 +8,9 @@ const styles = {
     padding: "1rem",
     overflow: "hidden",
     textAlign: "center",
+    "&:hover": {
+      cursor: "pointer",
+    },
   },
   colors: {
     display: "grid",
@@ -28,7 +31,7 @@ const MiniPalette = (props) => {
   const { classes } = props;
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} onClick={props.handleClick}>
       <div className={classes.colors}>
         {props.colors.map((c) => (
           <div

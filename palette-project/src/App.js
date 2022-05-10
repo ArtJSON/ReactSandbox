@@ -1,5 +1,6 @@
 import Palette from "./Palette";
 import MainPage from "./MainPage";
+import ColorPage from "./ColorPage";
 
 import { Routes, Route } from "react-router-dom";
 
@@ -8,7 +9,12 @@ function App() {
     <div className="App">
       <Routes>
         <Route exact path="/" element={<MainPage />} />
-        <Route path="/palette/:id" element={<Palette />} />
+        <Route exact path="/palette/:id" element={<Palette />} />
+        <Route
+          exact
+          path="/palette/:paletteid/:colorid"
+          element={<ColorPage />}
+        />
       </Routes>
     </div>
   );
