@@ -33,12 +33,14 @@ export default function ColorBox(props) {
           </div>
           <button className="btn-copy">Copy</button>
         </div>
-        <Link
-          to={`/palette/${props.paletteid}/${props.id}`}
-          onClick={(e) => e.stopPropagation()}
-        >
-          <span className="see-more">More</span>
-        </Link>
+        {props.paletteid && (
+          <Link
+            to={`/palette/${props.paletteid}/${props.id}`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <span className="see-more">More</span>
+          </Link>
+        )}
       </div>
     </CopyToClipboard>
   );

@@ -12,4 +12,27 @@
 
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: 1fr;
+}
+
+.go-back {
+  background-color: black;
+  color: white;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.go-back a {
+  color: white;
+  text-decoration: none;
+}
+
+.go-back .arrow {
+  font-size: 5rem;
+  margin: 0;
 }

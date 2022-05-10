@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./styles/ColorPage.css";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import seedColors from "./seedColors";
 import Navbar from "./Navbar";
 import { generatePalette } from "./colorHelpers";
@@ -25,11 +25,7 @@ const ColorPage = (props) => {
 
   // create colorBoxes using obtained colors
   const colorBoxes = colorPalette.map((c, index) =>
-    !index ? (
-      ""
-    ) : (
-      <ColorBox background={c[colorFormat]} {...c} paletteid={paletteid} />
-    )
+    !index ? "" : <ColorBox background={c[colorFormat]} {...c} />
   );
 
   return (
@@ -39,7 +35,21 @@ const ColorPage = (props) => {
           setColorFormat(newFormat);
         }}
       />
-      <div className="color-boxes">{colorBoxes}</div>
+      <div className="color-boxes">
+        {colorBoxes}
+        <div className="color-box ">
+          <Link
+            to={`/palette/${paletteid}`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="go-back">
+              <h1>Go back to the main palette</h1>
+              <h2 className="arrow">&#8592;</h2>
+            </div>
+          </Link>
+        </div>
+      </div>
+
       <footer className="palette-footer"></footer>
     </div>
   );
