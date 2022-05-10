@@ -1,5 +1,5 @@
 import React from "react";
-import { withStyles, WithStyles } from "@material-ui/core";
+import { withStyles } from "@material-ui/core";
 
 const styles = {
   root: {
@@ -34,6 +34,7 @@ const MiniPalette = (props) => {
           <div
             className={classes.smallBox}
             style={{ backgroundColor: c.color }}
+            key={c.color}
           ></div>
         ))}
       </div>
