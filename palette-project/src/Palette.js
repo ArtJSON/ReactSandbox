@@ -4,7 +4,6 @@ import "./styles/Palette.css";
 import Navbar from "./Navbar";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import seedColors from "./seedColors";
 import { generatePalette } from "./colorHelpers";
 
 export default function Palette(props) {
@@ -13,7 +12,7 @@ export default function Palette(props) {
   let { id } = useParams();
 
   const findPalette = (id) => {
-    return seedColors.find((palette) => palette.id === id);
+    return props.palettes.find((palette) => palette.id === id);
   };
 
   const palette = generatePalette(findPalette(id));

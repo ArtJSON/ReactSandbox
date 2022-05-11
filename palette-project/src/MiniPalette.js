@@ -15,6 +15,7 @@ const styles = {
   colors: {
     display: "grid",
     gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr",
+    gridTemplateRows: "1fr 1fr 1fr 1fr",
     width: "100%",
     height: "150px",
   },

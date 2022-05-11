@@ -15,6 +15,7 @@ import { ChromePicker } from "react-color";
 import { Button } from "@material-ui/core";
 import { useState } from "react";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+import { useNavigate } from "react-router-dom";
 
 import DraggableColorBox from "./DraggableColorBox";
 import "./styles/NewPaletteForm.css";
@@ -77,13 +78,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ColorDrawer() {
+export default function NewPaletteForm(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [currentColor, setCurrentColor] = useState("teal");
+  const [newPaletteName, setNewPaletteName] = useState("");
   const [newName, setNewName] = useState("");
   const [colors, setColors] = useState([]);
+  const navigate = useNavigate();
 
   // add custom validator on mounting the component
   useEffect(() => {
@@ -95,6 +98,9 @@ export default function ColorDrawer() {
     ValidatorForm.addValidationRule("correctAmount", (value) => {
       return colors.length < 20;
     });
+    ValidatorForm.addValidationRule("isNameUnique", (value) => {
+      return !props.names.includes(value);
+    });
   }, [colors]);
 
   const handleDrawerOpen = () => {
@@ -103,6 +109,17 @@ export default function ColorDrawer() {
 
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+
+  const savePalette = () => {
+    const newPalette = {
+      paletteName: newPaletteName,
+      id: newPaletteName.toLocaleLowerCase().replace(/ /g, "-"),
+      emoji: "a",
+      colors: colors,
+    };
+    props.addPalette(newPalette);
+    navigate("/");
   };
 
   return (
@@ -127,6 +144,23 @@ export default function ColorDrawer() {
           <Typography variant="h6" noWrap>
             Persistent drawer
           </Typography>
+
+          <ValidatorForm onSubmit={() => savePalette()}>
+            <TextValidator
+              label="Palette name"
+              value={newPaletteName}
+              validators={["required", "isNameUnique"]}
+              name="newColorName"
+              errorMessages={[
+                "This field is required",
+                "The name of palette needs to be unique",
+              ]}
+              onChange={(evt) => setNewPaletteName(evt.target.value)}
+            />
+            <Button variant="contained" color="secondary" type="submit">
+              Save palette
+            </Button>
+          </ValidatorForm>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -172,6 +206,7 @@ export default function ColorDrawer() {
           <TextValidator
             value={newName}
             onChange={(evt) => setNewName(evt.target.value)}
+            name="newColorName"
             validators={["required", "isColorUnique", "correctAmount"]}
             errorMessages={[
               "This field is required",

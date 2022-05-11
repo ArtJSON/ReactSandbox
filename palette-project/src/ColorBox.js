@@ -20,8 +20,6 @@ export default function ColorBox(props) {
 
   const colorClass = luminance > _threshold ? "light" : "dark";
 
-  console.log(colorClass);
-
   return (
     <CopyToClipboard text={props.background} onCopy={changeCopyState}>
       <div

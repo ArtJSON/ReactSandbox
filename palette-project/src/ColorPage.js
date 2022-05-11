@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./styles/ColorPage.css";
 import { useParams, Link } from "react-router-dom";
-import seedColors from "./seedColors";
 import Navbar from "./Navbar";
 import { generatePalette } from "./colorHelpers";
 import ColorBox from "./ColorBox";
@@ -12,7 +11,7 @@ const ColorPage = (props) => {
 
   // function used to find palette from seedColors based on passed palette id
   const findPalette = (paletteid) => {
-    return seedColors.find((palette) => palette.id === paletteid);
+    return props.palettes.find((palette) => palette.id === paletteid);
   };
 
   const wholePalette = generatePalette(findPalette(paletteid)).colors;
