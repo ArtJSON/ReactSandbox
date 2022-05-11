@@ -135,6 +135,10 @@ export default function NewPaletteForm(props) {
     );
   };
 
+  const generateRandomColor = () => {
+    setCurrentColor(Math.floor(Math.random() * 16777215).toString(16));
+  };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -208,6 +212,7 @@ export default function NewPaletteForm(props) {
             variant="contained"
             color="primary"
             disabled={colors.length >= 20}
+            onClick={generateRandomColor}
           >
             Random color
           </Button>
