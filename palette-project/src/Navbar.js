@@ -2,6 +2,7 @@ import React from "react";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import "./styles/Navbar.css";
+import { NavLink } from "react-router-dom";
 
 import { Select, MenuItem } from "@material-ui/core";
 
@@ -10,7 +11,7 @@ export default function Navbar(props) {
     <header className="navbar">
       <div className="logo-slider-container">
         <div className="logo">
-          <a href="/">ReactColorPicker</a>
+          <NavLink to={"/"}>ReactColorPicker</NavLink>
         </div>
         {props.levelSlider && (
           <div className="slider-container">

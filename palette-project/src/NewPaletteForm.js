@@ -16,6 +16,7 @@ import { Button } from "@material-ui/core";
 import { useState } from "react";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { useNavigate } from "react-router-dom";
+import seedColors from "./seedColors";
 
 import "./styles/NewPaletteForm.css";
 import DraggableColorList from "./DraggableColorList";
@@ -87,7 +88,7 @@ export default function NewPaletteForm(props) {
   const [currentColor, setCurrentColor] = useState("teal");
   const [newPaletteName, setNewPaletteName] = useState("");
   const [newName, setNewName] = useState("");
-  const [colors, setColors] = useState([]);
+  const [colors, setColors] = useState(seedColors[1].colors);
   const navigate = useNavigate();
 
   // add custom validator on mounting the component
@@ -196,10 +197,18 @@ export default function NewPaletteForm(props) {
         <Divider />
         <Typography variant="h4">Design your palette</Typography>
         <div>
-          <Button variant="contained" color="secondary">
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => setColors([])}
+          >
             Clear palette
           </Button>
-          <Button variant="contained" color="primary">
+          <Button
+            variant="contained"
+            color="primary"
+            disabled={colors.length >= 20}
+          >
             Random color
           </Button>
         </div>
@@ -231,6 +240,7 @@ export default function NewPaletteForm(props) {
             color="primary"
             style={{ backgroundColor: currentColor }}
             type="submit"
+            disabled={colors.length >= 20}
           >
             Add color
           </Button>
@@ -244,6 +254,7 @@ export default function NewPaletteForm(props) {
         <div className={classes.drawerHeader} />
 
         <DraggableColorList
+          distance={1}
           colors={colors}
           deleteColor={deleteColor}
           onSortEnd={onSortEnd}
