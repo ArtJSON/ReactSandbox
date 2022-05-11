@@ -111,6 +111,10 @@ export default function NewPaletteForm(props) {
     setOpen(false);
   };
 
+  const deleteColor = (name) => {
+    setColors((prev) => prev.filter((c) => c.name !== name));
+  };
+
   const savePalette = () => {
     const newPalette = {
       paletteName: newPaletteName,
@@ -233,7 +237,12 @@ export default function NewPaletteForm(props) {
 
         <div className="draggable-color-boxes">
           {colors.map((c) => (
-            <DraggableColorBox {...c} />
+            <DraggableColorBox
+              {...c}
+              delete={() => {
+                deleteColor(c.name);
+              }}
+            />
           ))}
         </div>
       </main>
