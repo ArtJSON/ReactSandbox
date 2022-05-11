@@ -1,6 +1,7 @@
 import Palette from "./Palette";
 import MainPage from "./MainPage";
 import ColorPage from "./ColorPage";
+import NewPaletteForm from "./NewPaletteForm";
 
 import { Routes, Route } from "react-router-dom";
 
@@ -15,6 +16,7 @@ function App() {
           path="/palette/:paletteid/:colorid"
           element={<ColorPage />}
         />
+        <Route exact path="/palette/new" element={<NewPaletteForm />} />
       </Routes>
     </div>
   );
