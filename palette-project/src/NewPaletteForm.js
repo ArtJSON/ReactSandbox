@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -11,8 +11,15 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import { ChromePicker } from "react-color";
+import { Button } from "@material-ui/core";
+import { useState } from "react";
+import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
-const drawerWidth = 240;
+import DraggableColorBox from "./DraggableColorBox";
+import "./styles/NewPaletteForm.css";
+
+const drawerWidth = 400;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -55,7 +62,6 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -74,7 +80,22 @@ const useStyles = makeStyles((theme) => ({
 export default function ColorDrawer() {
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [currentColor, setCurrentColor] = useState("teal");
+  const [newName, setNewName] = useState("");
+  const [colors, setColors] = useState([]);
+
+  // add custom validator on mounting the component
+  useEffect(() => {
+    ValidatorForm.addValidationRule("isColorUnique", (value) => {
+      return colors.every(
+        ({ name }) => name.toLowerCase() !== value.toLowerCase()
+      );
+    });
+    ValidatorForm.addValidationRule("correctAmount", (value) => {
+      return colors.length < 20;
+    });
+  }, [colors]);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -127,6 +148,46 @@ export default function ColorDrawer() {
           </IconButton>
         </div>
         <Divider />
+        <Typography variant="h4">Design your palette</Typography>
+        <div>
+          <Button variant="contained" color="secondary">
+            Clear palette
+          </Button>
+          <Button variant="contained" color="primary">
+            Random color
+          </Button>
+        </div>
+        <ChromePicker
+          onChangeComplete={(newColor) => setCurrentColor(newColor.hex)}
+          color={currentColor}
+        />
+        <ValidatorForm
+          onSubmit={() =>
+            setColors((prevColors) => [
+              ...prevColors,
+              { color: currentColor, name: newName },
+            ])
+          }
+        >
+          <TextValidator
+            value={newName}
+            onChange={(evt) => setNewName(evt.target.value)}
+            validators={["required", "isColorUnique", "correctAmount"]}
+            errorMessages={[
+              "This field is required",
+              "Color name needs to be unique",
+              "You cannot add more colors",
+            ]}
+          />
+          <Button
+            variant="contained"
+            color="primary"
+            style={{ backgroundColor: currentColor }}
+            type="submit"
+          >
+            Add color
+          </Button>
+        </ValidatorForm>
       </Drawer>
       <main
         className={clsx(classes.content, {
@@ -134,6 +195,12 @@ export default function ColorDrawer() {
         })}
       >
         <div className={classes.drawerHeader} />
+
+        <div className="draggable-color-boxes">
+          {colors.map((c) => (
+            <DraggableColorBox {...c} />
+          ))}
+        </div>
       </main>
     </div>
   );
