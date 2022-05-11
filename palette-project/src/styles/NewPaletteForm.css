@@ -1,6 +1,0 @@
-.draggable-color-boxes {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  height: calc(100vh - 4rem);
-}

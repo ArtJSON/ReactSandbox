@@ -17,8 +17,10 @@ import { useState } from "react";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { useNavigate } from "react-router-dom";
 
-import DraggableColorBox from "./DraggableColorBox";
 import "./styles/NewPaletteForm.css";
+import DraggableColorList from "./DraggableColorList";
+
+import { arrayMoveImmutable } from "array-move";
 
 const drawerWidth = 400;
 
@@ -124,6 +126,12 @@ export default function NewPaletteForm(props) {
     };
     props.addPalette(newPalette);
     navigate("/");
+  };
+
+  const onSortEnd = ({ oldIndex, newIndex }) => {
+    setColors((prevColors) =>
+      arrayMoveImmutable(prevColors, oldIndex, newIndex)
+    );
   };
 
   return (
@@ -235,16 +243,12 @@ export default function NewPaletteForm(props) {
       >
         <div className={classes.drawerHeader} />
 
-        <div className="draggable-color-boxes">
-          {colors.map((c) => (
-            <DraggableColorBox
-              {...c}
-              delete={() => {
-                deleteColor(c.name);
-              }}
-            />
-          ))}
-        </div>
+        <DraggableColorList
+          colors={colors}
+          deleteColor={deleteColor}
+          onSortEnd={onSortEnd}
+          axis="xy"
+        />
       </main>
     </div>
   );
