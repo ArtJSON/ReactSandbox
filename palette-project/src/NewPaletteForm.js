@@ -136,7 +136,7 @@ export default function NewPaletteForm(props) {
   };
 
   const generateRandomColor = () => {
-    setCurrentColor(Math.floor(Math.random() * 16777215).toString(16));
+    setCurrentColor("#" + Math.floor(Math.random() * 16777215).toString(16));
   };
 
   return (
@@ -161,7 +161,6 @@ export default function NewPaletteForm(props) {
           <Typography variant="h6" noWrap>
             Persistent drawer
           </Typography>
-
           <ValidatorForm onSubmit={() => savePalette()}>
             <TextValidator
               label="Palette name"
@@ -178,6 +177,13 @@ export default function NewPaletteForm(props) {
               Save palette
             </Button>
           </ValidatorForm>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => navigate("/")}
+          >
+            Go back
+          </Button>
         </Toolbar>
       </AppBar>
       <Drawer
