@@ -6,16 +6,22 @@ const TodoForm = (props) => {
 
   return (
     <div className="todo-form">
-      <form
-        onSubmit={(e) => {
+      <label htmlFor="task">Enter the task:</label>
+      <input
+        value={task}
+        type="text"
+        name="task"
+        id="task"
+        onInput={handleTask}
+      />
+      <button
+        onClick={() => {
           props.onSubmit({ name: task, finished: false });
           clearTask();
-          e.preventDefault();
         }}
       >
-        <label htmlFor="task">Enter the task:</label>
-        <input type="text" name="task" id="task" onInput={handleTask} />
-      </form>
+        Add task
+      </button>
     </div>
   );
 };
