@@ -1,5 +1,11 @@
+import TodoApp from "./TodoApp";
+
 function App() {
-  return <div className="App"></div>;
+  return (
+    <div className="App">
+      <TodoApp />
+    </div>
+  );
 }
 
 export default App;
