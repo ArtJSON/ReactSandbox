@@ -1,0 +1,42 @@
+.task {
+  display: flex;
+
+  padding: 0.5rem;
+
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task:not(:last-child) {
+  border-bottom: 1px solid #262626;
+}
+
+.task-name {
+  display: inline-block;
+  overflow: hidden;
+  width: fit-content;
+  margin: 0;
+}
+
+.task-options {
+  display: inline-flex;
+  width: fit-content;
+}
+
+.task-icon {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0.5rem;
+  width: 1rem;
+  height: 1rem;
+
+  border-radius: 2rem;
+  background-color: brown;
+  cursor: pointer;
+}
+
+.task-icon:not(:last-child) {
+  margin-right: 0.5rem;
+}
