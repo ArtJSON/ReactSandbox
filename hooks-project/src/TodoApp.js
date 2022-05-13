@@ -1,11 +1,21 @@
 import React, { useState } from "react";
 import TodoForm from "./TodoForm";
-import useInputState from "./hooks";
+import TodoItem from "./TodoItem";
 
 import "./styles/TodoApp.css";
 
 const TodoApp = () => {
   const [todoItems, setTodoItems] = useState([]);
+
+  const deleteItem = (item) => {
+    setTodoItems((prev) => prev.filter((i) => i != item));
+  };
+
+  const toggleState = (item) => {
+    setTodoItems((prev) =>
+      prev.map((i) => (i == item ? { name: i.name, finished: !i.finished } : i))
+    );
+  };
 
   return (
     <div className="todo-app">
@@ -15,19 +25,15 @@ const TodoApp = () => {
           setTodoItems((prev) => [...prev, newItem]);
         }}
       />
+
       <ul className="tasks">
         {todoItems.map((i) => (
-          <li className="task">
-            <p className="task-name">{i.name}</p>
-            <div className="task-options">
-              <div className="task-icon finish">
-                <span>&#10003;</span>
-              </div>
-              <div className="task-icon delete">
-                <span>&#10006;</span>
-              </div>
-            </div>
-          </li>
+          <TodoItem
+            name={i.name}
+            finished={i.finished}
+            handleDelete={() => deleteItem(i)}
+            handleState={() => toggleState(i)}
+          />
         ))}
       </ul>
     </div>
