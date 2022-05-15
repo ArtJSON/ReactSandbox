@@ -17,6 +17,12 @@ const TodoApp = () => {
     );
   };
 
+  const updateTask = (item, newTask) => {
+    setTodoItems((prev) =>
+      prev.map((i) => (i == item ? { name: newTask, finished: i.finished } : i))
+    );
+  };
+
   return (
     <div className="todo-app">
       <h1 className="header">Todo app</h1>
@@ -32,6 +38,7 @@ const TodoApp = () => {
             name={i.name}
             finished={i.finished}
             handleDelete={() => deleteItem(i)}
+            handleUpdate={(newTask) => updateTask(i, newTask)}
             handleState={() => toggleState(i)}
           />
         ))}

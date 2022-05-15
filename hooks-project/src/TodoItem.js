@@ -1,11 +1,24 @@
 import React from "react";
 import "./styles/TodoItem.css";
+import { useState } from "react";
 
 const TodoItem = (props) => {
   return (
     <li className="task">
       <p className={`task-name ${props.finished && "finished"}`}>
-        {props.name}
+        {props.edit ? (
+          <input
+            type="text"
+            name="task"
+            id="task"
+            defaultValue={props.name}
+            onChange={(e) => {
+              props.handleUpdate(e.target.value);
+            }}
+          />
+        ) : (
+          props.name
+        )}
       </p>
       <div className="task-options">
         <div className="task-icon finish" onClick={props.handleState}>
