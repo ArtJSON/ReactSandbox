@@ -1,7 +1,14 @@
-import React, { Component } from "react";
-
+import React from "react";
+import Link from "next/link";
 const Index = () => {
-  return <h1>Lalalalal</h1>;
+  return (
+    <div>
+      <Link href={"/about"}>
+        <a>About page</a>
+      </Link>
+      <h1>Lalalalal</h1>
+    </div>
+  );
 };
 
 export default Index;
